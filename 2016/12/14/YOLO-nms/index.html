@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="&amp;#x76EE;&amp;#x6807;&amp;#x7A97;&amp;#x53E3;&amp;#x68C0;&amp;#x6D4B;&amp;#x7B97;&amp;#x6CD5;-NMS&amp;#x975E;&amp;#x6781;&amp;#x5927;&amp;#x503C;&amp;#x6291;&amp;#x5236;YOLO&amp;#x5728;&amp;#x6700;&amp;#x540E;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6B65;&amp;#x9AA4;&amp;#x5C31;&amp;#x662F;">
+<meta name="description" content="YOLO&amp;#x5728;&amp;#x6700;&amp;#x540E;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6B65;&amp;#x9AA4;&amp;#x5C31;&amp;#x662F;&amp;#x5BF9; SxSx(Bx5+C) &amp;#x4E2A;&amp;#x5411;&amp;#x91CF;&amp;#x8FDB;&amp;#x884C;&amp;#x975E;&amp;#x6781;&amp;#x5927;&amp;#x503C;&amp;#x6291;&amp;#x5236;&amp;#xFF08">
 <meta property="og:type" content="article">
 <meta property="og:title" content="目标窗口检测算法-NMS非极大值抑制">
 <meta property="og:url" content="http://www.yougoer.com/2016/12/14/YOLO-nms/index.html">
 <meta property="og:site_name" content="Chan zomi">
-<meta property="og:description" content="&amp;#x76EE;&amp;#x6807;&amp;#x7A97;&amp;#x53E3;&amp;#x68C0;&amp;#x6D4B;&amp;#x7B97;&amp;#x6CD5;-NMS&amp;#x975E;&amp;#x6781;&amp;#x5927;&amp;#x503C;&amp;#x6291;&amp;#x5236;YOLO&amp;#x5728;&amp;#x6700;&amp;#x540E;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6B65;&amp;#x9AA4;&amp;#x5C31;&amp;#x662F;">
+<meta property="og:description" content="YOLO&amp;#x5728;&amp;#x6700;&amp;#x540E;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6B65;&amp;#x9AA4;&amp;#x5C31;&amp;#x662F;&amp;#x5BF9; SxSx(Bx5+C) &amp;#x4E2A;&amp;#x5411;&amp;#x91CF;&amp;#x8FDB;&amp;#x884C;&amp;#x975E;&amp;#x6781;&amp;#x5927;&amp;#x503C;&amp;#x6291;&amp;#x5236;&amp;#xFF08">
 <meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-nms/monroe0.jpg">
 <meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-nms/monroe1.jpg">
-<meta property="og:updated_time" content="2016-12-14T09:37:23.000Z">
+<meta property="og:updated_time" content="2016-12-14T09:39:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="目标窗口检测算法-NMS非极大值抑制">
-<meta name="twitter:description" content="&amp;#x76EE;&amp;#x6807;&amp;#x7A97;&amp;#x53E3;&amp;#x68C0;&amp;#x6D4B;&amp;#x7B97;&amp;#x6CD5;-NMS&amp;#x975E;&amp;#x6781;&amp;#x5927;&amp;#x503C;&amp;#x6291;&amp;#x5236;YOLO&amp;#x5728;&amp;#x6700;&amp;#x540E;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6B65;&amp;#x9AA4;&amp;#x5C31;&amp;#x662F;">
+<meta name="twitter:description" content="YOLO&amp;#x5728;&amp;#x6700;&amp;#x540E;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6B65;&amp;#x9AA4;&amp;#x5C31;&amp;#x662F;&amp;#x5BF9; SxSx(Bx5+C) &amp;#x4E2A;&amp;#x5411;&amp;#x91CF;&amp;#x8FDB;&amp;#x884C;&amp;#x975E;&amp;#x6781;&amp;#x5927;&amp;#x503C;&amp;#x6291;&amp;#x5236;&amp;#xFF08">
 <meta name="twitter:image" content="http://www.yougoer.com/2016/12/14/YOLO-nms/monroe0.jpg">
 
 
@@ -333,7 +333,8 @@
       
 
       
-        <h1 id="&#x76EE;&#x6807;&#x7A97;&#x53E3;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;-NMS&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;"><a href="#&#x76EE;&#x6807;&#x7A97;&#x53E3;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;-NMS&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;" class="headerlink" title="&#x76EE;&#x6807;&#x7A97;&#x53E3;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;-NMS&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;"></a>&#x76EE;&#x6807;&#x7A97;&#x53E3;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;-NMS&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;</h1><p>YOLO&#x5728;&#x6700;&#x540E;&#x7684;&#x4E00;&#x4E2A;&#x6B65;&#x9AA4;&#x5C31;&#x662F;&#x5BF9; $ S<em>S</em>(B*5+C) $ &#x4E2A;&#x5411;&#x91CF;&#x8FDB;&#x884C;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#xFF08;Non-max suppression&#xFF09;&#xFF0C;&#x4E00;&#x5F00;&#x59CB;&#x4E0D;&#x662F;&#x592A;&#x660E;&#x767D;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x662F;&#x5982;&#x4F55;&#x64CD;&#x4F5C;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4E0D;&#x592A;&#x6E05;&#x695A;YOLO&#x6700;&#x540E;&#x505A;&#x5B8C;&#x5377;&#x79EF;&#x540E;&#x5982;&#x4F55;&#x5BF9;&#x6C42;&#x5F97;&#x5411;&#x91CF;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#xFF0C;&#x6C42;&#x5F97;&#x76EE;&#x6807;&#x6846;&#x6846;&#x4F4D;&#x7F6E;&#x3002;</p>
+        <p>YOLO&#x5728;&#x6700;&#x540E;&#x7684;&#x4E00;&#x4E2A;&#x6B65;&#x9AA4;&#x5C31;&#x662F;&#x5BF9; SxSx(Bx5+C) &#x4E2A;&#x5411;&#x91CF;&#x8FDB;&#x884C;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#xFF08;Non-max suppression&#xFF09;&#xFF0C;&#x4E00;&#x5F00;&#x59CB;&#x4E0D;&#x662F;&#x592A;&#x660E;&#x767D;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x662F;&#x5982;&#x4F55;&#x64CD;&#x4F5C;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4E0D;&#x592A;&#x6E05;&#x695A;YOLO&#x6700;&#x540E;&#x505A;&#x5B8C;&#x5377;&#x79EF;&#x540E;&#x5982;&#x4F55;&#x5BF9;&#x6C42;&#x5F97;&#x5411;&#x91CF;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#xFF0C;&#x6C42;&#x5F97;&#x76EE;&#x6807;&#x6846;&#x4F4D;&#x7F6E;&#x3002;</p>
+<a id="more"></a>
 <p>&#x5BF9;YOLO&#x4EE3;&#x7801;&#x5206;&#x6790;&#x5B8C;&#x4E4B;&#x540E;&#x5BF9;&#x5176;&#x4ED6;&#x6B65;&#x9AA4;&#x64CD;&#x4F5C;&#x6709;&#x4E86;&#x4E00;&#x4E2A;&#x5927;&#x81F4;&#x7684;&#x8BA4;&#x8BC6;&#x4E4B;&#x540E;&#xFF0C;&#x56DE;&#x987E;&#x6700;&#x540E;&#x4E00;&#x6B65;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#xFF0C;&#x53D1;&#x73B0;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x5728;R-CNN&#x3001;Fast-RCNN&#x90FD;&#x6709;&#x7528;&#x5230;&#x7684;&#x540C;&#x6837;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x56E0;&#x6B64;YOLO&#x7684;&#x8BBA;&#x6587;&#x5E76;&#x6CA1;&#x6709;&#x63D0;&#x5230;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x3002;</p>
 <p>&#x5176;&#x5B9E;&#x5728;&#x7269;&#x4F53;&#x68C0;&#x6D4B;&#x9886;&#x57DF;&#x5F53;&#x4E2D;&#xFF0C;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x5E94;&#x7528;&#x5341;&#x5206;&#x5E7F;&#x6CDB;&#xFF0C;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x6D88;&#x9664;&#x591A;&#x4F59;&#x7684;&#x6846;&#xFF0C;&#x627E;&#x5230;&#x6700;&#x4F73;&#x7684;&#x7269;&#x4F53;&#x68C0;&#x6D4B;&#x7684;&#x4F4D;&#x7F6E;&#x3002;&#x90A3;&#x4E48;&#x5177;&#x4F53;&#x5982;&#x4F55;&#x64CD;&#x4F5C;&#x5462;&#xFF1F;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF0C;&#x6709;&#x4E09;&#x4E2A;boundingbox&#xFF0C;&#x5176;&#x4E2D;&#x7B2C;&#x4E00;&#x4E2A;&#x7EFF;&#x8272;boundingbox&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#x662F;0.7&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x7EFF;&#x8272;boundingbox&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#x662F;0.6&#xFF0C;&#x7B2C;&#x4E09;&#x4E2A;&#x7EFF;&#x8272;boundingbox&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#x662F;0.7&#x3002;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x5C31;&#x662F;&#x5728;&#x8FD9;&#x4E09;&#x4E2A;&#x6846;&#x5F53;&#x4E2D;&#x9009;&#x51FA;&#x7F6E;&#x4FE1;&#x5EA6;&#x6700;&#x9AD8;&#xFF0C;&#x4E14;&#x6700;&#x6709;&#x53EF;&#x80FD;&#x4EE3;&#x8868;&#x662F;&#x76EE;&#x6807;&#x7684;boundingbox&#x3002;</p>
 <p><img src="/2016/12/14/YOLO-nms/monroe0.jpg" alt=""></p>
@@ -436,17 +437,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -512,22 +504,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目标窗口检测算法-NMS非极大值抑制"><span class="nav-text">目标窗口检测算法-NMS非极大值抑制</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>
