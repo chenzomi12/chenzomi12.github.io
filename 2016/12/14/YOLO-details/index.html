@@ -1,0 +1,883 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="深度学习,CNN卷积神经网络,目标检测," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="YOLO&amp;#x662F;RCNN&amp;#x3001;Fast-RCNN&amp;#x3001;Faster-RCNN&amp;#x4E4B;&amp;#x540E;&amp;#x7684;&amp;#x76EE;&amp;#x6807;&amp;#x68C0;&amp;#x6D4B;&amp;#x67B6;&amp;#x6784;&amp;#x3002;&amp;#x6839;&amp;#x636E;&amp;#x5B9E;&amp;#x9645;&amp;#x6D4B;&amp;#x8BD5;&amp;#xFF0C;&amp;#x5728;yolo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YOLO目标检测原理与实践">
+<meta property="og:url" content="http://www.yougoer.com/2016/12/14/YOLO-details/index.html">
+<meta property="og:site_name" content="Chan zomi">
+<meta property="og:description" content="YOLO&amp;#x662F;RCNN&amp;#x3001;Fast-RCNN&amp;#x3001;Faster-RCNN&amp;#x4E4B;&amp;#x540E;&amp;#x7684;&amp;#x76EE;&amp;#x6807;&amp;#x68C0;&amp;#x6D4B;&amp;#x67B6;&amp;#x6784;&amp;#x3002;&amp;#x6839;&amp;#x636E;&amp;#x5B9E;&amp;#x9645;&amp;#x6D4B;&amp;#x8BD5;&amp;#xFF0C;&amp;#x5728;yolo">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/0.jpg">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/2.jpg">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/3.jpg">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/4.jpg">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/5.jpg">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/6.jpg">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/7.jpg">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/8.jpg">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/9.jpg">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/10.jpg">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/11.png">
+<meta property="og:updated_time" content="2016-12-14T09:25:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YOLO目标检测原理与实践">
+<meta name="twitter:description" content="YOLO&amp;#x662F;RCNN&amp;#x3001;Fast-RCNN&amp;#x3001;Faster-RCNN&amp;#x4E4B;&amp;#x540E;&amp;#x7684;&amp;#x76EE;&amp;#x6807;&amp;#x68C0;&amp;#x6D4B;&amp;#x67B6;&amp;#x6784;&amp;#x3002;&amp;#x6839;&amp;#x636E;&amp;#x5B9E;&amp;#x9645;&amp;#x6D4B;&amp;#x8BD5;&amp;#xFF0C;&amp;#x5728;yolo">
+<meta name="twitter:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/0.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.yougoer.com/2016/12/14/YOLO-details/"/>
+
+
+
+
+
+  <title> YOLO目标检测原理与实践 | Chan zomi </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Chan zomi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Deepapa Learn</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.yougoer.com/2016/12/14/YOLO-details/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zomi">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chan zomi">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chan zomi" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                YOLO目标检测原理与实践
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-14T15:27:29+08:00">
+                2016-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/14/YOLO-details/" class="leancloud_visitors" data-flag-title="YOLO目标检测原理与实践">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>YOLO&#x662F;RCNN&#x3001;Fast-RCNN&#x3001;Faster-RCNN&#x4E4B;&#x540E;&#x7684;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x67B6;&#x6784;&#x3002;&#x6839;&#x636E;&#x5B9E;&#x9645;&#x6D4B;&#x8BD5;&#xFF0C;&#x5728;yolo.cfg&#x901F;&#x5EA6;&#x80FD;&#x5230;45fps&#xFF0C;yolo-tiny&#x901F;&#x5EA6;&#x80FD;&#x8FBE;&#x5230;200fps&#xFF0C;&#x56E0;&#x6B64;&#x80FD;&#x591F;&#x8FDB;&#x884C;&#x5B9E;&#x65F6;&#x76D1;&#x6D4B;&#x3002;&#x56E0;&#x6B64;&#x6700;&#x8FD1;&#x516C;&#x53F8;&#x5728;&#x6363;&#x9F13;&#x5982;&#x4F55;&#x4F7F;&#x7528;YOLO&#x4F5C;&#x4E3A;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x7684;&#x7B97;&#x6CD5;&#x3002;</p>
+<a id="more"></a>
+<p>YOLO: You only look once<br>&#x5B98;&#x7F51;: <a href="http://pjreddie.com/darknet/yolo/" target="_blank" rel="external">http://pjreddie.com/darknet/yolo/</a><br>&#x8BBA;&#x6587;&#x5730;&#x5740;: <a href="http://arxiv.org/abs/1506.02640" target="_blank" rel="external">http://arxiv.org/abs/1506.02640</a><br>&#x4EE3;&#x7801;&#x5730;&#x5740;: <a href="https://github.com/pjreddie/darknet" target="_blank" rel="external">https://github.com/pjreddie/darknet</a></p>
+<hr>
+<h1 id="1-YOLO&#x7684;&#x6838;&#x5FC3;&#x601D;&#x60F3;"><a href="#1-YOLO&#x7684;&#x6838;&#x5FC3;&#x601D;&#x60F3;" class="headerlink" title="1. YOLO&#x7684;&#x6838;&#x5FC3;&#x601D;&#x60F3;"></a>1. YOLO&#x7684;&#x6838;&#x5FC3;&#x601D;&#x60F3;</h1><p>YOLO&#x7684;&#x6838;&#x5FC3;&#x601D;&#x60F3;&#x5C31;&#x662F;&#x5229;&#x7528;&#x6574;&#x5F20;&#x56FE;&#x4F5C;&#x4E3A;&#x7F51;&#x7EDC;&#x7684;&#x8F93;&#x5165;&#xFF0C;&#x76F4;&#x63A5;&#x5728;&#x8F93;&#x51FA;&#x5C42;&#x56DE;&#x5F52;bounding box&#x7684;&#x4F4D;&#x7F6E;&#x548C;bounding box&#x6240;&#x5C5E;&#x7684;&#x7C7B;&#x522B;&#x3002;</p>
+<h1 id="2-YOLO&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;"><a href="#2-YOLO&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;" class="headerlink" title="2. YOLO&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;"></a>2. YOLO&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;</h1><p>&#x5982;&#x56FE;1&#x6240;&#x793A;&#xFF0C;&#x9996;&#x5148;&#x662F;&#x5BF9;&#x56FE;&#x7247;&#x8FDB;&#x884C;resize&#x6210;&#x89C4;&#x5B9A;&#x7684;size&#xFF08;448x448&#xFF09;&#xFF0C;&#x7B2C;&#x4E8C;&#x6B65;&#x662F;&#x5BF9;&#x6574;&#x5F20;&#x56FE;&#x7247;&#x8FDB;&#x884C;&#x5377;&#x79EF;&#xFF0C;&#x7B2C;&#x4E09;&#x6B65;&#x662F;&#x4F7F;&#x7528;&#x975E;&#x6700;&#x5927;&#x503C;&#x6291;&#x5236;&#x7B97;&#x6CD5;&#x6C42;&#x5F97;&#x76EE;&#x6807;&#x533A;&#x57DF;&#x3002;&#x6709;&#x679C;&#x513F;&#x7B2C;&#x4E00;&#x6B21;&#x770B;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;Mon-max suppression&#x7684;&#x65F6;&#x5019;&#x5E76;&#x4E0D;&#x592A;&#x660E;&#x767D;&#x8FD9;&#x4E2A;&#x7B97;&#x6CD5;&#x5230;&#x5E95;&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#xFF0C;&#x73B0;&#x5728;&#x6682;&#x65F6;&#x53EF;&#x4EE5;&#x628A;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x5148;&#x653E;&#x4E00;&#x8FB9;&#xFF0C;&#x800C;&#x662F;focus&#x5728;YOLO&#x662F;&#x5982;&#x4F55;&#x63D0;&#x4EA4;RCNN&#x7684;&#x6548;&#x7387;&#xFF0C;&#x63D0;&#x53D6;&#x76EE;&#x6807;&#x533A;&#x57DF;&#x3002;</p>
+<p><img src="/2016/12/14/YOLO-details/0.jpg" alt=""></p>
+<h2 id="&#x9884;&#x6D4B;"><a href="#&#x9884;&#x6D4B;" class="headerlink" title="&#x9884;&#x6D4B;"></a>&#x9884;&#x6D4B;</h2><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x6709;&#x4E00;&#x5F20;&#x56FE;&#x7247;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF0C;&#x9996;&#x5148;&#x662F;&#x9700;&#x8981;&#x5BF9;&#x56FE;&#x7247;&#x8FDB;&#x884C;&#x5206;&#x5272;&#x6210;&#x4E3A; SxS &#x4E2A;&#x7F51;&#x683C;&#xFF0C;&#x5728;&#x4F5C;&#x8005;&#x8BBA;&#x6587;&#x91CC;&#x9762;&#x7ED9;&#x51FA;&#x7684;&#x662F;S=7&#xFF0C;&#x4E8E;&#x662F;&#x628A;&#x539F;&#x56FE;&#x5206;&#x6210; 7x7=49 &#x4E2A;&#x7F51;&#x683C;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x7F51;&#x683C;&#x7684;&#x5927;&#x5C0F;&#x662F; 64x64 &#x3002;&#x6BCF;&#x4E2A;&#x7F51;&#x683C;&#x8981;&#x9884;&#x6D4B;B&#x4E2A;bbox&#xFF0C;&#x6BCF;bbox&#x9664;&#x4E86;&#x8981;&#x56DE;&#x5F52;&#x81EA;&#x8EAB;&#x7684;&#x4F4D;&#x7F6E;&#x4E4B;&#x5916;&#xFF0C;&#x8FD8;&#x8981;&#x9644;&#x5E26;&#x9884;&#x6D4B;&#x4E00;&#x4E2A;confidence&#x503C;&#x3002; &#x8FD9;&#x4E2A;confidence&#x4EE3;&#x8868;&#x4E86;&#x6240;&#x9884;&#x6D4B;&#x7684;bbox&#x4E2D;&#x542B;&#x6709;object&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#x548C;&#x8FD9;&#x4E2A;box&#x9884;&#x6D4B;&#x7684;&#x6709;&#x591A;&#x51C6;&#x4E24;&#x91CD;&#x4FE1;&#x606F;&#xFF0C;&#x5176;&#x503C;&#x662F;&#x8FD9;&#x6837;&#x8BA1;&#x7B97;&#x7684;&#xFF1A; </p>
+<p> $$Pr(Object)*IOU(truth|pred)$$</p>
+<p>&#x5176;&#x4E2D;&#x5982;&#x679C;&#x6709;object&#x843D;&#x5728;&#x4E00;&#x4E2A;grid cell&#x91CC;&#xFF0C;Pr(Object)&#x53D6;1&#xFF0C;&#x5426;&#x5219;&#x53D6;0&#x3002; &#x7B2C;&#x4E8C;&#x9879;&#x662F;&#x9884;&#x6D4B;&#x7684;bbox&#x548C;&#x5B9E;&#x9645;&#x7684;groundtruth&#x4E4B;&#x95F4;&#x7684;IoU&#x503C;&#x3002;</p>
+<p>&#x6BCF;&#x4E2A;bbox&#x8981;&#x9884;&#x6D4B;(x, y, w, h)&#x548C;confidence&#x5171;5&#x4E2A;&#x503C;&#xFF0C;&#x5176;&#x4E2D;(x, y, w, h)&#x5E76;&#x4E0D;&#x662F;&#x6BCF;&#x4E2A;bbox&#x7684;&#x8D77;&#x59CB;&#x5750;&#x6807;&#x548C;&#x7A97;&#x53E3;&#x5BBD;&#x5EA6;&#xFF0C;x,y&#x662F;&#x76F8;&#x5BF9;&#x4E8E;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x7F51;&#x683C;&#x7684;&#x504F;&#x79FB;offset&#xFF0C;w,h&#x662F;&#x8BE5;&#x7A97;&#x53E3;&#x5BF9;&#x5E94;&#x4E8E;&#x6574;&#x5F20;&#x56FE;&#x50CF;&#x7684;&#x957F;&#x6B3E;&#x6BD4;&#x4F8B;&#x3002;&#x6BCF;&#x4E2A;&#x7F51;&#x683C;&#x8FD8;&#x8981;&#x9884;&#x6D4B;&#x4E00;&#x4E2A;&#x7C7B;&#x522B;&#x4FE1;&#x606F;&#xFF0C;&#x8BB0;&#x4E3A;C&#x7C7B;&#x3002;&#x5219;SxS&#x4E2A;&#x7F51;&#x683C;&#xFF0C;&#x6BCF;&#x4E2A;&#x7F51;&#x683C;&#x8981;&#x9884;&#x6D4B;B&#x4E2A;bounding box&#x8FD8;&#x8981;&#x9884;&#x6D4B;C&#x4E2A;categories&#x3002;&#x8F93;&#x51FA;&#x5C31;&#x662F;S x S x (5*B+C)&#x7684;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x3002; </p>
+<p>&#x5728;&#x9884;&#x6D4B;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6BCF;&#x4E2A;&#x7F51;&#x683C;&#x9884;&#x6D4B;&#x7684;class&#x4FE1;&#x606F;&#x548C;bounding box&#x9884;&#x6D4B;&#x7684;confidence&#x4FE1;&#x606F;&#x76F8;&#x4E58;&#xFF0C;&#x5C31;&#x5F97;&#x5230;&#x6BCF;&#x4E2A;bounding box&#x7684;class-specific confidence score: </p>
+<p>$$ Pr(Class_i)*IOU(truth|pred) $$</p>
+<p>&#x7B49;&#x5F0F;&#x5DE6;&#x8FB9;&#x7B2C;&#x4E00;&#x9879;&#x5C31;&#x662F;&#x6BCF;&#x4E2A;&#x7F51;&#x683C;&#x9884;&#x6D4B;&#x7684;&#x7C7B;&#x522B;&#x4FE1;&#x606F;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E09;&#x9879;&#x5C31;&#x662F;&#x6BCF;&#x4E2A;bounding box&#x9884;&#x6D4B;&#x7684;confidence&#x3002;&#x8FD9;&#x4E2A;&#x4E58;&#x79EF;&#x5373;encode&#x4E86;&#x9884;&#x6D4B;&#x7684;box&#x5C5E;&#x4E8E;&#x67D0;&#x4E00;&#x7C7B;&#x7684;&#x6982;&#x7387;&#xFF0C;&#x4E5F;&#x6709;&#x8BE5;box&#x51C6;&#x786E;&#x5EA6;&#x7684;&#x4FE1;&#x606F;&#x3002;&#x5F97;&#x5230;&#x6BCF;&#x4E2A;box&#x7684;class-specific confidence score&#x4EE5;&#x540E;&#xFF0C;&#x8BBE;&#x7F6E;&#x9608;&#x503C;&#xFF0C;&#x6EE4;&#x6389;&#x5F97;&#x5206;&#x4F4E;&#x7684;boxes&#xFF0C;&#x5BF9;&#x4FDD;&#x7559;&#x7684;boxes&#x8FDB;&#x884C;NMS&#x5904;&#x7406;&#xFF0C;&#x5C31;&#x5F97;&#x5230;&#x6700;&#x7EC8;&#x7684;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;&#x3002;</p>
+<p><em>&#x6CE8;&#x610F;&#xFF1A;class&#x4FE1;&#x606F;&#x662F;&#x9488;&#x5BF9;&#x6BCF;&#x4E2A;&#x7F51;&#x683C;&#x7684;&#xFF0C;confidence&#x4FE1;&#x606F;&#x662F;&#x9488;&#x5BF9;&#x6BCF;&#x4E2A;bounding box&#x7684;&#x3002;</em></p>
+<p><img src="/2016/12/14/YOLO-details/2.jpg" alt=""></p>
+<p>&#x5BF9;&#x5E94;&#x4E8E;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x7F51;&#x7EDC;&#x90FD;&#x4F1A;&#x6709;B&#x4E2A;boundingbox(bbox)&#x4F5C;&#x4E3A;&#x9884;&#x6D4B;&#x7684;&#x7A97;&#x53E3;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x9884;&#x6D4B;&#x7684;boundingbox(bbox)&#x4F55;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;confidences P(Object)&#x3002;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF0C;&#x5176;&#x4E2D; B=2 &#x8868;&#x793A;&#x6BCF;&#x4E00;&#x4E2A; 64x64 &#x7684;&#x7F51;&#x683C;&#x6709;&#x4E24;&#x4E2A;&#x9884;&#x6D4B;&#x7A97;&#x53E3;boundingbox(bbox)&#x3002;&#x56E0;&#x6B64;&#x6700;&#x540E;&#x5982;&#x4E0B;&#x56FE;&#x53F3;&#x4FA7;&#x6240;&#x793A;&#xFF0C;&#x4E49;&#x5DE5;&#x6709; 7x7x2=98 &#x4E2A;&#x7F51;&#x683C;&#x5206;&#x5E03;&#x5728;&#x56FE;&#x50CF;&#x5F53;&#x4E2D;:</p>
+<p><img src="/2016/12/14/YOLO-details/3.jpg" alt=""></p>
+<p>&#x53E6;&#x5916;&#x4E00;&#x65B9;&#x9762;&#xFF0C;&#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x628A;&#x539F;&#x56FE;&#x5212;&#x5206;&#x6210;&#x4E3A;  7x7=49 &#x4E2A;&#x7F51;&#x683C;&#xFF0C;&#x800C;&#x6BCF;&#x4E00;&#x4E2A;&#x7F51;&#x683C;&#x53EF;&#x4EE5;&#x5BF9;&#x5E94;&#x4E00;&#x79CD;&#x5206;&#x7C7B;&#x7684;&#x6982;&#x7387; P(Car|Object)&#x3002;&#x5C31;&#x8FD9;&#x6837;&#x628A;&#x6BCF;&#x4E00;&#x4E2A;&#x7F51;&#x683C;&#x7684;&#x9884;&#x6D4B;&#x7A97;&#x53E3;bbox&#x8DDF;&#x5176;&#x5206;&#x7C7B;&#x76F8;&#x5BF9;&#x5E94;&#x8D77;&#x6765;&#xFF0C;&#x5C31;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;:</p>
+<p><img src="/2016/12/14/YOLO-details/4.jpg" alt=""></p>
+<p>&#x5728;&#x7B97;&#x6CD5;&#x7684;&#x6700;&#x540E;&#x4F7F;&#x7528;&#x4E86;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x7B97;&#x6CD5;&#xFF0C;&#x6C42;&#x6BCF;&#x4E00;&#x4E2A;&#x7F51;&#x683C;&#x7684;&#x591A;&#x4E2A;bbox&#x5230;&#x5E95;&#x54EA;&#x4E2A;bbox&#x662F;&#x6700;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x7A97;&#x53E3;:</p>
+<p><img src="/2016/12/14/YOLO-details/5.jpg" alt=""></p>
+<p>$$ Pr(Class_i)*IOU(truth|pred) $$</p>
+<p><img src="/2016/12/14/YOLO-details/6.jpg" alt=""></p>
+<h2 id="&#x8BAD;&#x7EC3;"><a href="#&#x8BAD;&#x7EC3;" class="headerlink" title="&#x8BAD;&#x7EC3;"></a>&#x8BAD;&#x7EC3;</h2><p>&#x8BAD;&#x7EC3;&#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x5BF9;&#x7F51;&#x683C;&#x8FDB;&#x884C;&#x6C42;&#x89E3;&#xFF0C;&#x56E0;&#x6B64;&#x7528;&#x5927;&#x91CF;&#x7684;&#x56FE;&#x5728;&#x8FD9;&#x91CC;&#x8FDB;&#x884C;&#x8868;&#x793A;&#x8BB2;&#x89E3;&#x3002;&#x5728;&#x8BAD;&#x7EC3;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x8981;&#x5339;&#x914D;&#x6B63;&#x786E;&#x7684;&#x6837;&#x672C;&#x7684;&#x4E2D;&#x5FC3;&#x5F97;&#x5230;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x7F51;&#x683C;&#x91CC;&#x9762;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x6574;&#x7F51;&#x683C;&#x76F8;&#x5BF9;&#x5E94;&#x7684;&#x5206;&#x7C7B;&#x3002;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x68C0;&#x67E5;&#x7F51;&#x683C;&#x5BF9;&#x5E94;&#x7684;&#x9884;&#x6D4B;&#x7A97;&#x53E3;bbox&#xFF0C;&#x5982;&#x679C;&#x627E;&#x5230;&#x6700;&#x4F73;&#x7684;&#x7A97;&#x53E3;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5219;&#x8C03;&#x6574;&#x7A97;&#x53E3;&#xFF0C;&#x5E76;&#x589E;&#x52A0;&#x8BE5;&#x7A97;&#x53E3;&#x4FE1;&#x606F;&#x5BF9;&#x5E94;&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#xFF1B;&#x5F53;&#x7136;&#x5566;&#xFF0C;&#x56E0;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;&#x7F51;&#x683C;&#x5BF9;&#x5E94;&#x591A;&#x4E2A;&#x9884;&#x6D4B;&#x7A97;&#x53E3;bbox&#xFF0C;&#x5BF9;&#x4E8E;&#x8DDF;&#x6837;&#x672C;&#x4E0D;&#x662F;&#x592A;&#x5339;&#x914D;&#x7684;&#x9884;&#x6D4B;&#x7A97;&#x53E3;bbox&#x6211;&#x4EEC;&#x628A;&#x5B83;&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#x964D;&#x4F4E;&#x3002;</p>
+<p><img src="/2016/12/14/YOLO-details/7.jpg" alt=""></p>
+<p><img src="/2016/12/14/YOLO-details/8.jpg" alt=""></p>
+<p><img src="/2016/12/14/YOLO-details/9.jpg" alt=""></p>
+<p>&#x53E6;&#x5916;&#x4E00;&#x65B9;&#x9762;&#xFF0C;&#x5728;&#x8BAD;&#x7EC3;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x6709;&#x4E00;&#x4E9B;&#x7A97;&#x53E3;&#x5E76;&#x6CA1;&#x6709;&#x68C0;&#x6D4B;&#x5230;&#x4EFB;&#x4F55;ground truth&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x68C0;&#x6D4B;bbox&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#xFF0C;&#x5E76;&#x964D;&#x4F4E;&#x5176;&#x5BF9;&#x5E94;&#x9884;&#x6D4B;&#x7A97;&#x53E3;bbox&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x8981;&#x4FEE;&#x6539;&#x5BF9;&#x5E94;&#x7684;&#x5206;&#x7C7B;&#x548C;&#x7A97;&#x53E3;&#x5750;&#x6807;&#x3002;&#x6700;&#x540E;&#x7ECF;&#x8FC7;&#x591A;&#x6B21;&#x8FED;&#x4EE3;&#x540E;&#x7A97;&#x53E3;&#x7684;&#x4F4D;&#x7F6E;&#x5C31;&#x8BAD;&#x7EC3;&#x5B8C;&#x6BD5;&#x3002;</p>
+<p><img src="/2016/12/14/YOLO-details/10.jpg" alt=""></p>
+<h1 id="3-YOLO&#x7684;&#x7F3A;&#x70B9;"><a href="#3-YOLO&#x7684;&#x7F3A;&#x70B9;" class="headerlink" title="3. YOLO&#x7684;&#x7F3A;&#x70B9;"></a>3. YOLO&#x7684;&#x7F3A;&#x70B9;</h1><ul>
+<li><p>YOLO&#x5BF9;&#x76F8;&#x4E92;&#x9760;&#x7684;&#x5F88;&#x8FD1;&#x7684;&#x7269;&#x4F53;&#xFF0C;&#x8FD8;&#x6709;&#x5F88;&#x5C0F;&#x7684;&#x7FA4;&#x4F53; &#x68C0;&#x6D4B;&#x6548;&#x679C;&#x4E0D;&#x597D;&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x4E00;&#x4E2A;&#x7F51;&#x683C;&#x4E2D;&#x53EA;&#x9884;&#x6D4B;&#x4E86;&#x4E24;&#x4E2A;&#x6846;&#xFF0C;&#x5E76;&#x4E14;&#x53EA;&#x5C5E;&#x4E8E;&#x4E00;&#x7C7B;&#x3002;</p>
+</li>
+<li><p>&#x5BF9;&#x6D4B;&#x8BD5;&#x56FE;&#x50CF;&#x4E2D;&#xFF0C;&#x540C;&#x4E00;&#x7C7B;&#x7269;&#x4F53;&#x51FA;&#x73B0;&#x7684;&#x65B0;&#x7684;&#x4E0D;&#x5E38;&#x89C1;&#x7684;&#x957F;&#x5BBD;&#x6BD4;&#x548C;&#x5176;&#x4ED6;&#x60C5;&#x51B5;&#x662F;&#x3002;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#x504F;&#x5F31;&#x3002;</p>
+</li>
+<li><p>&#x7531;&#x4E8E;&#x635F;&#x5931;&#x51FD;&#x6570;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5B9A;&#x4F4D;&#x8BEF;&#x5DEE;&#x662F;&#x5F71;&#x54CD;&#x68C0;&#x6D4B;&#x6548;&#x679C;&#x7684;&#x4E3B;&#x8981;&#x539F;&#x56E0;&#x3002;&#x5C24;&#x5176;&#x662F;&#x5927;&#x5C0F;&#x7269;&#x4F53;&#x7684;&#x5904;&#x7406;&#x4E0A;&#xFF0C;&#x8FD8;&#x6709;&#x5F85;&#x52A0;&#x5F3A;&#x3002;</p>
+</li>
+</ul>
+<h1 id="4-&#x8FD0;&#x884C;YOLO2"><a href="#4-&#x8FD0;&#x884C;YOLO2" class="headerlink" title="4. &#x8FD0;&#x884C;YOLO2"></a>4. &#x8FD0;&#x884C;YOLO2</h1><p>&#x7F16;&#x8BD1;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/pjreddie/darknet</div><div class="line"><span class="built_in">cd</span> darknet</div><div class="line">make</div></pre></td></tr></table></figure>
+<p>&#x8FD0;&#x884C;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget http://pjreddie.com/media/files/yolo.weights</div><div class="line">./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg</div></pre></td></tr></table></figure>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;</p>
+<p><img src="/2016/12/14/YOLO-details/11.png" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">layer     filters    size              input                output</div><div class="line">    0 conv     32  3 x 3 / 1   416 x 416 x   3   -&gt;   416 x 416 x  32</div><div class="line">    1 max          2 x 2 / 2   416 x 416 x  32   -&gt;   208 x 208 x  32</div><div class="line">    .......</div><div class="line">   29 conv    425  1 x 1 / 1    13 x  13 x1024   -&gt;    13 x  13 x 425</div><div class="line">   30 detection</div><div class="line">Loading weights from yolo.weights...Done!</div><div class="line">data/dog.jpg: Predicted <span class="keyword">in</span> 0.016287 seconds.</div><div class="line">car: 54%</div><div class="line">bicycle: 51%</div><div class="line">dog: 56%</div></pre></td></tr></table></figure>
+<h1 id="5-&#x7528;YOLOv2&#x6A21;&#x578B;&#x8BAD;&#x7EC3;VOC&#x6570;&#x636E;&#x96C6;"><a href="#5-&#x7528;YOLOv2&#x6A21;&#x578B;&#x8BAD;&#x7EC3;VOC&#x6570;&#x636E;&#x96C6;" class="headerlink" title="5. &#x7528;YOLOv2&#x6A21;&#x578B;&#x8BAD;&#x7EC3;VOC&#x6570;&#x636E;&#x96C6;"></a>5. &#x7528;YOLOv2&#x6A21;&#x578B;&#x8BAD;&#x7EC3;VOC&#x6570;&#x636E;&#x96C6;</h1><h2 id="1-&#x4FEE;&#x6539;-cfg-voc-data&#x6587;&#x4EF6;"><a href="#1-&#x4FEE;&#x6539;-cfg-voc-data&#x6587;&#x4EF6;" class="headerlink" title="1 &#x4FEE;&#x6539;./cfg/voc.data&#x6587;&#x4EF6;"></a>1 &#x4FEE;&#x6539;./cfg/voc.data&#x6587;&#x4EF6;</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">classes= 20</div><div class="line">//&#x4FEE;&#x6539;&#x4E3A;&#x4F60;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x7684;.txt&#x76EE;&#x5F55;</div><div class="line">train  = /home/pjreddie/data/voc/train.txt</div><div class="line">//&#x4FEE;&#x6539;&#x4E3A;&#x4F60;&#x9A8C;&#x8BC1;&#x6570;&#x636E;&#x7684;.txt&#x76EE;&#x5F55;</div><div class="line">valid  = /home/pjreddie/data/voc/2007_test.txt</div><div class="line">names = data/voc.names</div><div class="line">//&#x4FEE;&#x6539;&#x4E3A;&#x4F60;&#x7684;&#x6A21;&#x578B;&#x5907;&#x4EFD;&#x76EE;&#x5F55;</div><div class="line">backup = /home/pjreddie/backup/</div></pre></td></tr></table></figure>
+<h2 id="2-&#x5F00;&#x59CB;&#x8BAD;&#x7EC3;"><a href="#2-&#x5F00;&#x59CB;&#x8BAD;&#x7EC3;" class="headerlink" title="2 &#x5F00;&#x59CB;&#x8BAD;&#x7EC3;"></a>2 &#x5F00;&#x59CB;&#x8BAD;&#x7EC3;</h2><p>&#x8FD9;&#x91CC;&#x6211;&#x9009;&#x62E9;&#x7684;&#x662F;22&#x5C42;&#x7684;&#x7F51;&#x7EDC;&#xFF0C;batch_size=64&#xFF0C;subdivisions=8&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x7684;&#x5185;&#x5B58;&#x592A;&#x5C0F;&#xFF0C;&#x8FD0;&#x884C;&#x51FA;&#x9519;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x8FD9;&#x4E24;&#x4E2A;&#x503C;&#x6539;&#x5C0F;&#x4E00;&#x70B9;&#xFF0C;&#x7136;&#x540E;&#x8FD0;&#x884C;&#x4EE5;&#x4E0B;&#x6307;&#x4EE4;&#x5373;&#x53EF;&#x5F00;&#x59CB;&#x8BAD;&#x7EC3;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./darknet detector train ./cfg/voc.data ./cfg/yolo-voc.cfg</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">nohup: ignoring input</div><div class="line">   2 layer     filters    size              input                output</div><div class="line">   3     0 conv     32  3 x 3 / 1   416 x 416 x   3   -&gt;   416 x 416 x  32</div><div class="line">   4     1 max          2 x 2 / 2   416 x 416 x  32   -&gt;   208 x 208 x  32</div><div class="line">   5     2 conv     64  3 x 3 / 1   208 x 208 x  32   -&gt;   208 x 208 x  64</div><div class="line">   6     3 max          2 x 2 / 2   208 x 208 x  64   -&gt;   104 x 104 x  </div><div class="line">   ......</div><div class="line">  31    28 conv   1024  3 x 3 / 1    13 x  13 x3072   -&gt;    13 x  13 x1024</div><div class="line">  32    29 conv    125  1 x 1 / 1    13 x  13 x1024   -&gt;    13 x  13 x 125</div><div class="line">  33    30 detection</div><div class="line">  34 yolo-voc</div><div class="line">  35 Learning Rate: 0.0001, Momentum: 0.9, Decay: 0.0005</div><div class="line">  36 Loaded: 1.850000 seconds</div><div class="line">  37 Region Avg IOU: 0.358097, Class: 0.065954, Obj: 0.474037, No Obj: 0.508373, Avg Recall: 0.200000,  count: 15</div><div class="line">  38 Region Avg IOU: 0.360629, Class: 0.065775, Obj: 0.466963, No Obj: 0.508891, Avg Recall: 0.178571,  count: 28</div><div class="line">  39 Region Avg IOU: 0.328480, Class: 0.048047, Obj: 0.471501, No Obj: 0.509045, Avg Recall: 0.217391,  count: 23</div><div class="line">  40 Region Avg IOU: 0.387740, Class: 0.060535, Obj: 0.495033, No Obj: 0.509017, Avg Recall: 0.333333,  count: 12</div><div class="line">  41 Region Avg IOU: 0.284584, Class: 0.046532, Obj: 0.471151, No Obj: 0.508602, Avg Recall: 0.090909,  count: 22</div><div class="line">  42 Region Avg IOU: 0.335542, Class: 0.049446, Obj: 0.520727, No Obj: 0.508899, Avg Recall: 0.150000,  count: 20</div><div class="line">  43 Region Avg IOU: 0.366046, Class: 0.055863, Obj: 0.502995, No Obj: 0.509692, Avg Recall: 0.250000,  count: 32</div><div class="line">  44 Region Avg IOU: 0.411998, Class: 0.050235, Obj: 0.497955, No Obj: 0.506873, Avg Recall: 0.375000,  count: 16</div><div class="line">  45 1: 18.557627, 18.557627 avg, 0.000100 rate, 15.430000 seconds, 64 images</div><div class="line">  46 Loaded: 0.000000 seconds</div><div class="line">  47 Region Avg IOU: 0.394109, Class: 0.048967, Obj: 0.449230, No Obj: 0.454679, Avg Recall: 0.333333,  count: 15</div><div class="line">  48 Region Avg IOU: 0.430337, Class: 0.044501, Obj: 0.475584, No Obj: 0.454697, Avg Recall: 0.250000,  count: 16</div><div class="line">  49 Region Avg IOU: 0.318591, Class: 0.069988, Obj: 0.490419, No Obj: 0.454365, Avg Recall: 0.133333,  count: 15</div><div class="line">  50 Region Avg IOU: 0.335521, Class: 0.060138, Obj: 0.408140, No Obj: 0.454221, Avg Recall: 0.277778,  count: 18</div><div class="line">  51 Region Avg IOU: 0.360168, Class: 0.055241, Obj: 0.456031, No Obj: 0.455356, Avg Recall: 0.307692,  count: 13</div><div class="line">  52 Region Avg IOU: 0.343406, Class: 0.056148, Obj: 0.439433, No Obj: 0.454594, Avg Recall: 0.187500,  count: 16</div><div class="line">  53 Region Avg IOU: 0.349903, Class: 0.047826, Obj: 0.392414, No Obj: 0.454783, Avg Recall: 0.235294,  count: 17</div><div class="line">  54 Region Avg IOU: 0.319748, Class: 0.059287, Obj: 0.456736, No Obj: 0.453497, Avg Recall: 0.217391,  count: 23</div><div class="line">  55 2: 15.246732, 18.226538 avg, 0.000100 rate, 9.710000 seconds, 128 images</div><div class="line">  56 Loaded: 0.000000 seconds</div></pre></td></tr></table></figure>
+<h2 id="3-&#x6D4B;&#x8BD5;"><a href="#3-&#x6D4B;&#x8BD5;" class="headerlink" title="3 &#x6D4B;&#x8BD5;"></a>3 &#x6D4B;&#x8BD5;</h2><p>&#x8BAD;&#x7EC3;&#x4E86;&#x4E00;&#x665A;&#x4E0A;&#x8FED;&#x4EE3;&#x4E86;6000&#x6B21;&#xFF0C;&#x6211;&#x4EEC;&#x6D4B;&#x8BD5;&#x4E0B;&#xFF0C;&#x770B;&#x4E00;&#x4E0B;6000&#x6B21;&#x8FED;&#x4EE3;&#x540E;&#x7684;&#x6548;&#x679C;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./darknet detector test cfg/voc.data cfg/yolo-voc.cfg backup/yolo-voc_6000.weights data/dog.jpg</div></pre></td></tr></table></figure>
+<hr>
+<p>&#x53C2;&#x8003;&#xFF1A;</p>
+<p>1.<a href="http://blog.csdn.net/u014540717/article/details/53411948" target="_blank" rel="external">&#x7528;YOLOv2&#x6A21;&#x578B;&#x8BAD;&#x7EC3;VOC&#x6570;&#x636E;&#x96C6;</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
+          
+            <a href="/tags/CNN卷积神经网络/" rel="tag"># CNN卷积神经网络</a>
+          
+            <a href="/tags/目标检测/" rel="tag"># 目标检测</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/13/CNN-Architectures/" rel="next" title="CNN卷积神经网络架构综述">
+                <i class="fa fa-chevron-left"></i> CNN卷积神经网络架构综述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/14/YOLO-nms/" rel="prev" title="目标窗口检测算法-NMS非极大值抑制">
+                目标窗口检测算法-NMS非极大值抑制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="zomi" />
+          <p class="site-author-name" itemprop="name">zomi</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.yougoer.com/" title="Blog" target="_blank">Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-YOLO的核心思想"><span class="nav-text">1. YOLO的核心思想</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-YOLO的实现方法"><span class="nav-text">2. YOLO的实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#预测"><span class="nav-text">预测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练"><span class="nav-text">训练</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-YOLO的缺点"><span class="nav-text">3. YOLO的缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-运行YOLO2"><span class="nav-text">4. 运行YOLO2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-用YOLOv2模型训练VOC数据集"><span class="nav-text">5. 用YOLOv2模型训练VOC数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-修改-cfg-voc-data文件"><span class="nav-text">1 修改./cfg/voc.data文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-开始训练"><span class="nav-text">2 开始训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-测试"><span class="nav-text">3 测试</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zomi</span>
+</div>
+
+
+<div class="powered-by">
+  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+
+</body>
+</html>

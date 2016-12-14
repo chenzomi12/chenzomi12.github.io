@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="深度学习, 机器学习, 人工智能, 深度学习实践" />
+  <meta name="keywords" content="深度学习,目标检测," />
 
 
 
@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-$$T(n">
+<meta name="description" content="&amp;#x76EE;&amp;#x6807;&amp;#x7A97;&amp;#x53E3;&amp;#x68C0;&amp;#x6D4B;&amp;#x7B97;&amp;#x6CD5;-NMS&amp;#x975E;&amp;#x6781;&amp;#x5927;&amp;#x503C;&amp;#x6291;&amp;#x5236;YOLO&amp;#x5728;&amp;#x6700;&amp;#x540E;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6B65;&amp;#x9AA4;&amp;#x5C31;&amp;#x662F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://www.yougoer.com/2016/12/10/hello-world/index.html">
+<meta property="og:title" content="目标窗口检测算法-NMS非极大值抑制">
+<meta property="og:url" content="http://www.yougoer.com/2016/12/14/YOLO-nms/index.html">
 <meta property="og:site_name" content="Chan zomi">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-$$T(n">
-<meta property="og:updated_time" content="2016-12-10T03:14:46.000Z">
+<meta property="og:description" content="&amp;#x76EE;&amp;#x6807;&amp;#x7A97;&amp;#x53E3;&amp;#x68C0;&amp;#x6D4B;&amp;#x7B97;&amp;#x6CD5;-NMS&amp;#x975E;&amp;#x6781;&amp;#x5927;&amp;#x503C;&amp;#x6291;&amp;#x5236;YOLO&amp;#x5728;&amp;#x6700;&amp;#x540E;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6B65;&amp;#x9AA4;&amp;#x5C31;&amp;#x662F;">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-nms/monroe0.jpg">
+<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-nms/monroe1.jpg">
+<meta property="og:updated_time" content="2016-12-14T09:37:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-$$T(n">
+<meta name="twitter:title" content="目标窗口检测算法-NMS非极大值抑制">
+<meta name="twitter:description" content="&amp;#x76EE;&amp;#x6807;&amp;#x7A97;&amp;#x53E3;&amp;#x68C0;&amp;#x6D4B;&amp;#x7B97;&amp;#x6CD5;-NMS&amp;#x975E;&amp;#x6781;&amp;#x5927;&amp;#x503C;&amp;#x6291;&amp;#x5236;YOLO&amp;#x5728;&amp;#x6700;&amp;#x540E;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6B65;&amp;#x9AA4;&amp;#x5C31;&amp;#x662F;">
+<meta name="twitter:image" content="http://www.yougoer.com/2016/12/14/YOLO-nms/monroe0.jpg">
 
 
 
@@ -124,13 +124,13 @@ $$T(n">
 
 
 
-  <link rel="canonical" href="http://www.yougoer.com/2016/12/10/hello-world/"/>
+  <link rel="canonical" href="http://www.yougoer.com/2016/12/14/YOLO-nms/"/>
 
 
 
 
 
-  <title> Hello World | Chan zomi </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 目标窗口检测算法-NMS非极大值抑制 | Chan zomi </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -251,7 +251,7 @@ $$T(n">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.yougoer.com/2016/12/10/hello-world/">
+  <link itemprop="mainEntityOfPage" href="http://www.yougoer.com/2016/12/14/YOLO-nms/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="zomi">
@@ -275,7 +275,7 @@ $$T(n">
             
             
               
-                Hello World
+                目标窗口检测算法-NMS非极大值抑制
               
             
           </h1>
@@ -288,8 +288,8 @@ $$T(n">
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-10T11:08:29+08:00">
-                2016-12-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-14T17:36:28+08:00">
+                2016-12-14
               </time>
             
 
@@ -308,7 +308,7 @@ $$T(n">
 
           
           
-             <span id="/2016/12/10/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+             <span id="/2016/12/14/YOLO-nms/" class="leancloud_visitors" data-flag-title="目标窗口检测算法-NMS非极大值抑制">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -333,16 +333,20 @@ $$T(n">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<p>$$T(n) = \Theta(n)$$</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h1 id="&#x76EE;&#x6807;&#x7A97;&#x53E3;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;-NMS&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;"><a href="#&#x76EE;&#x6807;&#x7A97;&#x53E3;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;-NMS&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;" class="headerlink" title="&#x76EE;&#x6807;&#x7A97;&#x53E3;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;-NMS&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;"></a>&#x76EE;&#x6807;&#x7A97;&#x53E3;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;-NMS&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;</h1><p>YOLO&#x5728;&#x6700;&#x540E;&#x7684;&#x4E00;&#x4E2A;&#x6B65;&#x9AA4;&#x5C31;&#x662F;&#x5BF9; $ S<em>S</em>(B*5+C) $ &#x4E2A;&#x5411;&#x91CF;&#x8FDB;&#x884C;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#xFF08;Non-max suppression&#xFF09;&#xFF0C;&#x4E00;&#x5F00;&#x59CB;&#x4E0D;&#x662F;&#x592A;&#x660E;&#x767D;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x662F;&#x5982;&#x4F55;&#x64CD;&#x4F5C;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4E0D;&#x592A;&#x6E05;&#x695A;YOLO&#x6700;&#x540E;&#x505A;&#x5B8C;&#x5377;&#x79EF;&#x540E;&#x5982;&#x4F55;&#x5BF9;&#x6C42;&#x5F97;&#x5411;&#x91CF;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#xFF0C;&#x6C42;&#x5F97;&#x76EE;&#x6807;&#x6846;&#x6846;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p>&#x5BF9;YOLO&#x4EE3;&#x7801;&#x5206;&#x6790;&#x5B8C;&#x4E4B;&#x540E;&#x5BF9;&#x5176;&#x4ED6;&#x6B65;&#x9AA4;&#x64CD;&#x4F5C;&#x6709;&#x4E86;&#x4E00;&#x4E2A;&#x5927;&#x81F4;&#x7684;&#x8BA4;&#x8BC6;&#x4E4B;&#x540E;&#xFF0C;&#x56DE;&#x987E;&#x6700;&#x540E;&#x4E00;&#x6B65;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#xFF0C;&#x53D1;&#x73B0;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x5728;R-CNN&#x3001;Fast-RCNN&#x90FD;&#x6709;&#x7528;&#x5230;&#x7684;&#x540C;&#x6837;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x56E0;&#x6B64;YOLO&#x7684;&#x8BBA;&#x6587;&#x5E76;&#x6CA1;&#x6709;&#x63D0;&#x5230;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x3002;</p>
+<p>&#x5176;&#x5B9E;&#x5728;&#x7269;&#x4F53;&#x68C0;&#x6D4B;&#x9886;&#x57DF;&#x5F53;&#x4E2D;&#xFF0C;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x5E94;&#x7528;&#x5341;&#x5206;&#x5E7F;&#x6CDB;&#xFF0C;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x6D88;&#x9664;&#x591A;&#x4F59;&#x7684;&#x6846;&#xFF0C;&#x627E;&#x5230;&#x6700;&#x4F73;&#x7684;&#x7269;&#x4F53;&#x68C0;&#x6D4B;&#x7684;&#x4F4D;&#x7F6E;&#x3002;&#x90A3;&#x4E48;&#x5177;&#x4F53;&#x5982;&#x4F55;&#x64CD;&#x4F5C;&#x5462;&#xFF1F;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF0C;&#x6709;&#x4E09;&#x4E2A;boundingbox&#xFF0C;&#x5176;&#x4E2D;&#x7B2C;&#x4E00;&#x4E2A;&#x7EFF;&#x8272;boundingbox&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#x662F;0.7&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x7EFF;&#x8272;boundingbox&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#x662F;0.6&#xFF0C;&#x7B2C;&#x4E09;&#x4E2A;&#x7EFF;&#x8272;boundingbox&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#x662F;0.7&#x3002;&#x975E;&#x6781;&#x5927;&#x503C;&#x6291;&#x5236;&#x5C31;&#x662F;&#x5728;&#x8FD9;&#x4E09;&#x4E2A;&#x6846;&#x5F53;&#x4E2D;&#x9009;&#x51FA;&#x7F6E;&#x4FE1;&#x5EA6;&#x6700;&#x9AD8;&#xFF0C;&#x4E14;&#x6700;&#x6709;&#x53EF;&#x80FD;&#x4EE3;&#x8868;&#x662F;&#x76EE;&#x6807;&#x7684;boundingbox&#x3002;</p>
+<p><img src="/2016/12/14/YOLO-nms/monroe0.jpg" alt=""></p>
+<p>&#x4E3A;&#x4E86;&#x7814;&#x7A76;&#x900F;NMS&#x5230;&#x5E95;&#x662F;&#x5982;&#x4F55;&#x64CD;&#x4F5C;&#x7684;&#xFF0C;&#x6211;&#x6765;&#x968F;&#x673A;&#x5B9A;&#x4E49;&#x4E86;4&#x4E2A;&#x7A97;&#x53E3;&#xFF0C;&#x7F6E;&#x4FE1;&#x5EA6;&#x5206;&#x522B;&#x662F;[0.5, 0.7, 0.6, 0.7]&#xFF0C;&#x5BF9;&#x5E94;&#x4E0A;&#x56FE;&#x7684;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x65B9;&#x6846;&#x3002;&#x7B97;&#x6CD5;&#x7684;&#x6838;&#x5FC3;&#xFF1A;</p>
+<ol>
+<li>&#x628A;&#x7F6E;&#x4FE1;&#x5EA6;&#x6700;&#x9AD8;&#x7684;&#x4E00;&#x4E2A;boundingbox(bbox)&#x4F5C;&#x4E3A;&#x76EE;&#x6807;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x6BD4;&#x5269;&#x4E0B;bbox&#x4E0E;&#x76EE;&#x6807;bbox&#x4E4B;&#x95F4;&#x7684;&#x4EA4;&#x53C9;&#x533A;&#x57DF;</li>
+<li>&#x5982;&#x679C;&#x4EA4;&#x53C9;&#x533A;&#x57DF;&#x5927;&#x4E8E;&#x8BBE;&#x5B9A;&#x7684;&#x9608;&#x503C;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x5269;&#x4E0B;&#x7684;bbox&#x4E2D;&#x53BB;&#x9664;&#x8BE5;bbox&#xFF08;&#x5373;&#x4F7F;&#x8BE5;bbox&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#x4E0E;&#x76EE;&#x6807;bbox&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#x4E00;&#x6837;&#xFF09;&#x2014;-&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x5C31;&#x662F;&#x6291;&#x5236;&#x6700;&#x5927;&#x91CD;&#x53E0;&#x533A;&#x57DF;</li>
+<li>&#x628A;&#x7B2C;&#x4E8C;&#x7F6E;&#x4FE1;&#x5EA6;&#x9AD8;&#x7684;bbox&#x4F5C;&#x4E3A;&#x76EE;&#x6807;&#xFF0C;&#x91CD;&#x590D;1&#x3001;2</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">dets = np.array([</div><div class="line">                [<span class="number">204</span>, <span class="number">102</span>, <span class="number">358</span>, <span class="number">250</span>, <span class="number">0.5</span>],</div><div class="line">                [<span class="number">257</span>, <span class="number">118</span>, <span class="number">380</span>, <span class="number">250</span>, <span class="number">0.7</span>],</div><div class="line">                [<span class="number">280</span>, <span class="number">135</span>, <span class="number">400</span>, <span class="number">250</span>, <span class="number">0.6</span>],</div><div class="line">                [<span class="number">255</span>, <span class="number">118</span>, <span class="number">360</span>, <span class="number">235</span>, <span class="number">0.7</span>]])</div><div class="line"></div><div class="line">thresh = <span class="number">0.3</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">nms</span><span class="params">(dets, thresh)</span>:</span></div><div class="line">    x1 = dets[:, <span class="number">0</span>]</div><div class="line">    y1 = dets[:, <span class="number">1</span>]</div><div class="line">    x2 = dets[:, <span class="number">2</span>]</div><div class="line">    y2 = dets[:, <span class="number">3</span>]</div><div class="line">    scores = dets[:, <span class="number">4</span>]</div><div class="line">    </div><div class="line">    areas = (x2 - x1 + <span class="number">1</span>) * (y2 - y1 + <span class="number">1</span>) <span class="comment"># &#x6BCF;&#x4E2A;boundingbox&#x7684;&#x9762;&#x79EF;</span></div><div class="line">    order = scores.argsort()[::<span class="number">-1</span>] <span class="comment"># boundingbox&#x7684;&#x7F6E;&#x4FE1;&#x5EA6;&#x6392;&#x5E8F;</span></div><div class="line"></div><div class="line">    keep = [] <span class="comment"># &#x7528;&#x6765;&#x4FDD;&#x5B58;&#x6700;&#x540E;&#x7559;&#x4E0B;&#x6765;&#x7684;boundingbox</span></div><div class="line">    <span class="keyword">while</span> order.size &gt; <span class="number">0</span>:     </div><div class="line">        i = order[<span class="number">0</span>] <span class="comment"># &#x7F6E;&#x4FE1;&#x5EA6;&#x6700;&#x9AD8;&#x7684;boundingbox&#x7684;index</span></div><div class="line">        keep.append(i) <span class="comment"># &#x6DFB;&#x52A0;&#x672C;&#x6B21;&#x7F6E;&#x4FE1;&#x5EA6;&#x6700;&#x9AD8;&#x7684;boundingbox&#x7684;index</span></div><div class="line">        </div><div class="line">        <span class="comment"># &#x5F53;&#x524D;bbox&#x548C;&#x5269;&#x4E0B;bbox&#x4E4B;&#x95F4;&#x7684;&#x4EA4;&#x53C9;&#x533A;&#x57DF;</span></div><div class="line">        <span class="comment"># &#x9009;&#x62E9;&#x5927;&#x4E8E;x1,y1&#x548C;&#x5C0F;&#x4E8E;x2,y2&#x7684;&#x533A;&#x57DF;</span></div><div class="line">        xx1 = np.maximum(x1[i], x1[order[<span class="number">1</span>:]])</div><div class="line">        yy1 = np.maximum(y1[i], y1[order[<span class="number">1</span>:]])</div><div class="line">        xx2 = np.minimum(x2[i], x2[order[<span class="number">1</span>:]])</div><div class="line">        yy2 = np.minimum(y2[i], y2[order[<span class="number">1</span>:]])</div><div class="line">        </div><div class="line">        <span class="comment"># &#x5F53;&#x524D;bbox&#x548C;&#x5176;&#x4ED6;&#x5269;&#x4E0B;bbox&#x4E4B;&#x95F4;&#x4EA4;&#x53C9;&#x533A;&#x57DF;&#x7684;&#x9762;&#x79EF;</span></div><div class="line">        w = np.maximum(<span class="number">0.0</span>, xx2 - xx1 + <span class="number">1</span>)</div><div class="line">        h = np.maximum(<span class="number">0.0</span>, yy2 - yy1 + <span class="number">1</span>)</div><div class="line">        inter = w * h</div><div class="line">        </div><div class="line">        <span class="comment"># &#x4EA4;&#x53C9;&#x533A;&#x57DF;&#x9762;&#x79EF; / (bbox + &#x67D0;&#x533A;&#x57DF;&#x9762;&#x79EF; - &#x4EA4;&#x53C9;&#x533A;&#x57DF;&#x9762;&#x79EF;)</span></div><div class="line">        ovr = inter / (areas[i] + areas[order[<span class="number">1</span>:]] - inter)</div><div class="line"></div><div class="line">        <span class="comment">#&#x4FDD;&#x7559;&#x4EA4;&#x96C6;&#x5C0F;&#x4E8E;&#x4E00;&#x5B9A;&#x9608;&#x503C;&#x7684;boundingbox</span></div><div class="line">        inds = np.where(ovr &lt;= thresh)[<span class="number">0</span>]</div><div class="line">        order = order[inds + <span class="number">1</span>]</div><div class="line">        </div><div class="line">    <span class="keyword">return</span> keep</div><div class="line"></div><div class="line"><span class="keyword">print</span> nms(dets, thresh)</div></pre></td></tr></table></figure>
+<p>&#x6700;&#x540E;&#x7684;&#x6548;&#x679C;&#x5C31;&#x662F;&#x5F97;&#x5230;&#x5F00;&#x59CB;&#x5B9A;&#x4E49;&#x7684;4&#x4E2A;bbox&#x4E2D;&#x7684;&#x7B2C;4&#x4E2A;(3):</p>
+<p><img src="/2016/12/14/YOLO-nms/monroe1.jpg" alt=""></p>
 
       
     </div>
@@ -364,20 +368,28 @@ $$T(n">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
+          
+            <a href="/tags/目标检测/" rel="tag"># 目标检测</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/14/YOLO-details/" rel="next" title="YOLO目标检测原理与实践">
+                <i class="fa fa-chevron-left"></i> YOLO目标检测原理与实践
+              </a>
             
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/10/机器学习新手误区/" rel="prev" title="机器学习新手误区">
-                机器学习新手误区 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -510,7 +522,7 @@ $$T(n">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目标窗口检测算法-NMS非极大值抑制"><span class="nav-text">目标窗口检测算法-NMS非极大值抑制</span></a></li></ol></div>
             
 
           </div>

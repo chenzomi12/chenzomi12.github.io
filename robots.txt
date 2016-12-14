@@ -1,0 +1,8 @@
+# yougoer blog robots.txt
+User-agent: *
+Allow: /
+Allow: /archives/
+Disallow: /js/
+Disallow: /css/
+Sitemap: http://www.yougoer.com/sitemap.xml
+Sitemap: http://www.yougoer.com/baidusitemap.xml
