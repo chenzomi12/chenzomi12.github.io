@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="深度学习,CNN卷积神经网络,目标检测," />
+  <meta name="keywords" content="深度学习,目标检测,CNN卷积神经网络," />
 
 
 
@@ -87,27 +87,27 @@
 <meta name="description" content="YOLO&amp;#x662F;RCNN&amp;#x3001;Fast-RCNN&amp;#x3001;Faster-RCNN&amp;#x4E4B;&amp;#x540E;&amp;#x7684;&amp;#x76EE;&amp;#x6807;&amp;#x68C0;&amp;#x6D4B;&amp;#x67B6;&amp;#x6784;&amp;#x3002;&amp;#x6839;&amp;#x636E;&amp;#x5B9E;&amp;#x9645;&amp;#x6D4B;&amp;#x8BD5;&amp;#xFF0C;&amp;#x5728;yolo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="YOLO目标检测原理与实践">
-<meta property="og:url" content="http://www.yougoer.com/2016/12/14/YOLO-details/index.html">
-<meta property="og:site_name" content="Chan zomi">
+<meta property="og:url" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/index.html">
+<meta property="og:site_name" content="ZOMI">
 <meta property="og:description" content="YOLO&amp;#x662F;RCNN&amp;#x3001;Fast-RCNN&amp;#x3001;Faster-RCNN&amp;#x4E4B;&amp;#x540E;&amp;#x7684;&amp;#x76EE;&amp;#x6807;&amp;#x68C0;&amp;#x6D4B;&amp;#x67B6;&amp;#x6784;&amp;#x3002;&amp;#x6839;&amp;#x636E;&amp;#x5B9E;&amp;#x9645;&amp;#x6D4B;&amp;#x8BD5;&amp;#xFF0C;&amp;#x5728;yolo">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/0.jpg">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/2.jpg">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/3.jpg">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/4.jpg">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/5.jpg">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/6.jpg">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/7.jpg">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/8.jpg">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/9.jpg">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/10.jpg">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/11.png">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/predictions1.jpg">
-<meta property="og:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/predictions.jpg">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/0.jpg">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/2.jpg">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/3.jpg">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/4.jpg">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/5.jpg">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/6.jpg">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/7.jpg">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/8.jpg">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/9.jpg">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/10.jpg">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/11.png">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/predictions1.jpg">
+<meta property="og:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/predictions.jpg">
 <meta property="og:updated_time" content="2016-12-14T10:52:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="YOLO目标检测原理与实践">
 <meta name="twitter:description" content="YOLO&amp;#x662F;RCNN&amp;#x3001;Fast-RCNN&amp;#x3001;Faster-RCNN&amp;#x4E4B;&amp;#x540E;&amp;#x7684;&amp;#x76EE;&amp;#x6807;&amp;#x68C0;&amp;#x6D4B;&amp;#x67B6;&amp;#x6784;&amp;#x3002;&amp;#x6839;&amp;#x636E;&amp;#x5B9E;&amp;#x9645;&amp;#x6D4B;&amp;#x8BD5;&amp;#xFF0C;&amp;#x5728;yolo">
-<meta name="twitter:image" content="http://www.yougoer.com/2016/12/14/YOLO-details/0.jpg">
+<meta name="twitter:image" content="http://chenzomi12.github.io/2016/12/14/YOLO-details/0.jpg">
 
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://www.yougoer.com/2016/12/14/YOLO-details/"/>
+  <link rel="canonical" href="http://chenzomi12.github.io/2016/12/14/YOLO-details/"/>
 
 
 
 
 
-  <title> YOLO目标检测原理与实践 | Chan zomi </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> YOLO目标检测原理与实践 | ZOMI </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -172,7 +172,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Chan zomi</span>
+      <span class="site-title">ZOMI</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -262,18 +262,18 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.yougoer.com/2016/12/14/YOLO-details/">
+  <link itemprop="mainEntityOfPage" href="http://chenzomi12.github.io/2016/12/14/YOLO-details/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="zomi">
+    <meta itemprop="name" content="ZOMI">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="/uploads/avatar.png">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Chan zomi">
+    <meta itemprop="name" content="ZOMI">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Chan zomi" src="">
+      <img style="display:none;" itemprop="url image" alt="ZOMI" src="">
     </span>
   </span>
 
@@ -429,9 +429,9 @@
           
             <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
           
-            <a href="/tags/CNN卷积神经网络/" rel="tag"># CNN卷积神经网络</a>
-          
             <a href="/tags/目标检测/" rel="tag"># 目标检测</a>
+          
+            <a href="/tags/CNN卷积神经网络/" rel="tag"># CNN卷积神经网络</a>
           
         </div>
       
@@ -513,14 +513,14 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
-               alt="zomi" />
-          <p class="site-author-name" itemprop="name">zomi</p>
+               alt="ZOMI" />
+          <p class="site-author-name" itemprop="name">ZOMI</p>
           <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -610,7 +610,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">zomi</span>
+  <span class="author" itemprop="copyrightHolder">ZOMI</span>
 </div>
 
 
