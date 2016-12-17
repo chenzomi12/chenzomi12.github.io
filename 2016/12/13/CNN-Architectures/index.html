@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://chenzomi12.github.io/2016/12/13/CNN-Architectures/SqueezeNet.jpg">
 <meta property="og:image" content="http://chenzomi12.github.io/2016/12/13/CNN-Architectures/xception-net.jpg">
 <meta property="og:image" content="http://chenzomi12.github.io/2016/12/13/CNN-Architectures/acc_vs_net_vs_ops.png">
-<meta property="og:updated_time" content="2016-12-15T07:17:00.000Z">
+<meta property="og:updated_time" content="2016-12-15T07:20:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN卷积神经网络架构综述">
 <meta name="twitter:description" content="&amp;#x6DF1;&amp;#x5EA6;&amp;#x5B66;&amp;#x4E60;&amp;#x7B97;&amp;#x6CD5;&amp;#x6700;&amp;#x8FD1;&amp;#x53D8;&amp;#x5F97;&amp;#x8D8A;&amp;#x6765;&amp;#x8D8A;&amp;#x6D41;&amp;#x884C;&amp;#x548C;&amp;#x8D8A;&amp;#x6765;&amp;#x8D8A;&amp;#x6709;&amp;#x7528;&amp;#x7684;&amp;#x7B97;&amp;#x6CD5;&amp;#xFF0C;">
@@ -344,9 +344,10 @@
       
 
       
-        <p>&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#x6700;&#x8FD1;&#x53D8;&#x5F97;&#x8D8A;&#x6765;&#x8D8A;&#x6D41;&#x884C;&#x548C;&#x8D8A;&#x6765;&#x8D8A;&#x6709;&#x7528;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x7136;&#x800C;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6216;&#x8005;&#x6DF1;&#x5EA6;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x6210;&#x529F;&#x5F97;&#x76CA;&#x4E8E;&#x5C42;&#x51FA;&#x4E0D;&#x7A77;&#x7684;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x6A21;&#x578B;&#x67B6;&#x6784;&#x3002;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x5F53;&#x4E2D;&#x4F5C;&#x8005;&#x56DE;&#x987E;&#x4E86;&#x4ECE;1998&#x5E74;&#x5F00;&#x59CB;&#xFF0C;&#x8FDB;18&#x5E74;&#x6765;&#x6DF1;&#x5EA6;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x67B6;&#x6784;&#x53D1;&#x5C55;&#x60C5;&#x51B5;&#x3002;</p>
+        <p>&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#x6700;&#x8FD1;&#x53D8;&#x5F97;&#x8D8A;&#x6765;&#x8D8A;&#x6D41;&#x884C;&#x548C;&#x8D8A;&#x6765;&#x8D8A;&#x6709;&#x7528;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x7136;&#x800C;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6216;&#x8005;&#x6DF1;&#x5EA6;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x6210;&#x529F;&#x5F97;&#x76CA;&#x4E8E;&#x5C42;&#x51FA;&#x4E0D;&#x7A77;&#x7684;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x6A21;&#x578B;&#x67B6;&#x6784;&#x3002;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x5F53;&#x4E2D;&#x4F5C;&#x8005;&#x56DE;&#x987E;&#x4E86;&#x4ECE;1998&#x5E74;&#x5F00;&#x59CB;&#xFF0C;&#x8FD1;18&#x5E74;&#x6765;&#x6DF1;&#x5EA6;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x67B6;&#x6784;&#x53D1;&#x5C55;&#x60C5;&#x51B5;&#x3002;</p>
 <a id="more"></a>
-<p><img src="/2016/12/13/CNN-Architectures/acc_vs_net_vs_ops.png" alt=""></p>
+<center><br><img src="/2016/12/13/CNN-Architectures/acc_vs_net_vs_ops.png" alt=""><br></center>
+
 <p>&#x56FE;&#x4E2D;&#x7684;&#x5750;&#x6807;&#x8F74;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x6A2A;&#x5750;&#x6807;&#x662F;&#x64CD;&#x4F5C;&#x7684;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x7EB5;&#x5750;&#x6807;&#x662F;&#x7CBE;&#x5EA6;&#x3002;&#x6A21;&#x578B;&#x8BBE;&#x8BA1;&#x4E00;&#x5F00;&#x59CB;&#x7684;&#x65F6;&#x5019;&#x6A21;&#x578B;&#x6743;&#x91CD;&#x8D8A;&#x591A;&#x6A21;&#x578B;&#x8D8A;&#x5927;&#xFF0C;&#x5176;&#x7CBE;&#x5EA6;&#x8D8A;&#x9AD8;&#xFF0C;&#x540E;&#x6765;&#x51FA;&#x73B0;&#x4E86;resNet&#x3001;GoogleNet&#x3001;Inception&#x7B49;&#x7F51;&#x7EDC;&#x67B6;&#x6784;&#x4E4B;&#x540E;&#xFF0C;&#x5728;&#x53D6;&#x5F97;&#x76F8;&#x540C;&#x6216;&#x8005;&#x66F4;&#x9AD8;&#x7CBE;&#x5EA6;&#x4E4B;&#x4E0B;&#xFF0C;&#x5176;&#x6743;&#x91CD;&#x53C2;&#x6570;&#x4E0D;&#x65AD;&#x4E0B;&#x964D;&#x3002;&#x503C;&#x5F97;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x610F;&#x5473;&#x7740;&#x6A2A;&#x5750;&#x6807;&#x8D8A;&#x5F80;&#x53F3;&#xFF0C;&#x5B83;&#x7684;&#x8FD0;&#x7B97;&#x65F6;&#x95F4;&#x8D8A;&#x5927;&#x3002;&#x5728;&#x8FD9;&#x91CC;&#x5E76;&#x6CA1;&#x6709;&#x5BF9;&#x65F6;&#x95F4;&#x8FDB;&#x884C;&#x7EDF;&#x8BA1;&#xFF0C;&#x800C;&#x662F;&#x5BF9;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x548C;&#x7F51;&#x7EDC;&#x7684;&#x7CBE;&#x5EA6;&#x8FDB;&#x884C;&#x4E86;&#x7EB5;&#x6A2A;&#x5BF9;&#x6BD4;&#x3002;</p>
 <p>&#x5176;&#x4E2D;&#x6709;&#x51E0;&#x4E2A;&#x7F51;&#x7EDC;&#x4F5C;&#x8005;&#x89C9;&#x5F97;&#x662F;&#x5FC5;&#x5B66;&#x975E;&#x5E38;&#x503C;&#x5F97;&#x5B66;&#x4E60;&#x548C;&#x7ECF;&#x5178;&#x7684;&#xFF1A;AlexNet&#x3001;LeNet&#x3001;GoogLeNet&#x3001;VGG-16&#x3001;NiN&#x3002;</p>
 <p>&#x5982;&#x679C;&#x4F60;&#x60F3;&#x4E86;&#x89E3;&#x66F4;&#x591A;&#x5173;&#x4E8E;&#x6DF1;&#x5EA6;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x67B6;&#x6784;&#x53CA;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x4E0D;&#x59A8;&#x770B;&#x4E00;&#x4E0B;&#x8FD9;&#x7BC7;&#x7EFC;&#x8FF0; <a href="https://arxiv.org/abs/1605.07678" target="_blank" rel="external">An Analysis of Deep Neural Network Models for Practical Applications</a>&#x3002;</p>
@@ -414,7 +415,8 @@
 <li>&#x53EA;&#x4F7F;&#x7528;3x3&#x5377;&#x79EF;</li>
 </ul>
 <p>&#x56E0;&#x6B64;&#x6700;&#x540E;&#x7684;&#x6A21;&#x578B;&#x5C31;&#x53D8;&#x6210;&#x8FD9;&#x6837;&#x4E86;&#xFF1A;</p>
-<p><img src="/2016/12/13/CNN-Architectures/inceptionv3.jpg" alt=""></p>
+<center><br><img src="/2016/12/13/CNN-Architectures/inceptionv3.jpg" alt=""><br></center>
+
 <p>&#x7F51;&#x7EDC;&#x67B6;&#x6784;&#x6700;&#x540E;&#x8FD8;&#x662F;&#x8DDF;GoogleNet&#x4E00;&#x6837;&#x4F7F;&#x7528;pooling&#x5C42;+softmax&#x5C42;&#x4F5C;&#x4E3A;&#x6700;&#x540E;&#x7684;&#x5206;&#x7C7B;&#x5668;&#x3002;</p>
 <h2 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h2><p>2015&#x5E74;12&#x6708;<a href="https://arxiv.org/pdf/1512.03385v1.pdf" target="_blank" rel="external">ResNet</a>&#x53D1;&#x8868;&#x4E86;&#xFF0C;&#x65F6;&#x95F4;&#x4E0A;&#x5927;&#x6982;&#x4E0E;Inception v3&#x7F51;&#x7EDC;&#x4E00;&#x8D77;&#x53D1;&#x8868;&#x7684;&#x3002;&#x5176;&#x4E2D;ResNet&#x7684;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x7684;&#x601D;&#x60F3;&#x662F;&#xFF1A;&#x8F93;&#x51FA;&#x7684;&#x662F;&#x4E24;&#x4E2A;&#x8FDE;&#x7EED;&#x7684;&#x5377;&#x79EF;&#x5C42;&#xFF0C;&#x5E76;&#x4E14;&#x8F93;&#x5165;&#x65F6;&#x7ED5;&#x5230;&#x4E0B;&#x4E00;&#x5C42;&#x53BB;&#x3002;&#x8FD9;&#x53E5;&#x8BDD;&#x4E0D;&#x592A;&#x597D;&#x7406;&#x89E3;&#x53EF;&#x4EE5;&#x770B;&#x4E0B;&#x56FE;&#x3002;</p>
 <center><br><img src="/2016/12/13/CNN-Architectures/resnetb.jpg" alt=""><br></center>
